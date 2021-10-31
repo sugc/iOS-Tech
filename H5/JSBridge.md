@@ -1,9 +1,9 @@
-#iOS JSBridge实现
+# iOS JSBridge实现
 
 jsbridge是实现JS和Navite应用交互的一种方式，分为JS调Native和Native调JS.这边以WKWebView为例讲一下JSBridge的实现。[demo地址](https://github.com/sugc/iOS-JSBridge)
 
 
-##Native调H5
+## Native调H5
 Native调JS的方式比较简单, 通过以下方法可以直接执行一段JS脚本，并获取返回值
 
 
@@ -13,15 +13,12 @@ Native调JS的方式比较简单, 通过以下方法可以直接执行一段JS�
 
 ```
 
-###例子:
 
 
-
-
-##H5调Navite
+## H5调Navite
 JS调Native本质都是Native通过拦截H5的回调，解析之后根据参数执行native代码，再回调结果到JS. 目前所了解到的正常主要有以下两种方式。
 
-###1,拦截跳转url
+### 1,拦截跳转url
 
 ```javascript
 <!--JS-->
@@ -47,7 +44,7 @@ func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigatio
    
 ```
 
-###2,拦截prompt回调
+### 2,拦截prompt回调
 
 ```
 //JS
@@ -68,7 +65,7 @@ func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt:
 
 
 
-##如何设计一个好用的JSBridge
+## 如何设计一个好用的JSBridge
 这边通过拦截跳转Url的方式来设计一个JSBridge实现JS调Native, 主要包含以下几块
 
 * 协议定义  
@@ -77,7 +74,7 @@ func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt:
 * Native回调JS方法
 
 
-####1 首先看看协议怎么定，协议包含以下两部分  
+#### 1 首先看看协议怎么定，协议包含以下两部分  
 
 > 
 * 拦截scheme, 如JSBridge, 只要不和常见的scheme冲突即可    
@@ -92,7 +89,7 @@ func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt:
 
 	
 
-####2 Native解析代码就不展开说了，iOS开发都熟，具体可以看看demo。下面说说JS部分如何设计。
+#### 2 Native解析代码就不展开说了，iOS开发都熟，具体可以看看demo。下面说说JS部分如何设计。
 
 Native回调JS的关键在于，如何去保存和寻找每次JS调用的回调方法。可以通过JS侧用一个字典保存这些回调，然后将key传给Native, Native执行完毕之后，再将返回值和key一起回调到JS。
 
