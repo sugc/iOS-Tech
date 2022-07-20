@@ -68,7 +68,7 @@ flutter create  --platforms  ios  --platforms android -i swift -a kotlin my_app
 lib文件夹下会默认生成一个main.dart文件，其中的main方法是整个程序的入口。文件默认实现了一个demo，直接可以运行。
 
 
-至于Flutter相关控件这边就不再赘述，可以看以下官方文档，了解常用的UI控件如何使用。[官方文档]()
+至于Flutter相关控件这边就不再赘述，可以看以下官方文档，了解常用的UI控件如何使用。[官方文档](https://docs.flutter.dev/get-started/codelab)
 
 
 
