@@ -5,6 +5,7 @@
 ## 常用 package
 
 
+
 ## <a id='Wdiget'>Widget</a> 
 
 Widget是一个描述了一个视图该如何展示的不可变对象，在Flutter应用中，几乎所有的东西都是一个Widget, 在作用上类似于iOS中的UIView。
@@ -73,7 +74,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 ```
 
 
-### Basic widgets
+## Basic widgets
 
 系统提供了一组强大的基础widget, 以下是一些常用的：
 
@@ -87,15 +88,75 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
    本身不展示任何内容。添加到Stack的widget，会按照顺序在Z轴排列，相互之间会覆盖，相当于在UIView上添加多个subView的情况，后添加的视图会遮盖之前添加的视图。
 
 * #### Container
-    创建一个方形的虚拟元素，可以通过BoxDecoration去装饰，比如背景，边框，阴影等，可通过三维矩阵进行变换。
+    创建一个方形的虚拟元素，可以通过Decoration去装饰，比如背景，边框，阴影等，渐变色等，可通过三维矩阵进行变换。
 
+```
+ return Container(
+
+      margin: const EdgeInsets.all(10),
+      height: 150,
+
+      decoration: const BoxDecoration(
+        color: Colors.blue,
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        boxShadow: [
+          BoxShadow(
+              color: Color(0xFFE57373),
+            blurRadius: 4.0,
+            spreadRadius: 1.0,
+            offset: Offset(2.0, 1.0),
+            blurStyle: BlurStyle.solid
+          )
+        ],
+        gradient:LinearGradient(begin: Alignment.topLeft, end:Alignment.bottomRight ,colors:  [Colors.white,Colors.redAccent,Colors.greenAccent])
+      ),
+      child: Text('text')      
+);
+```
 
 * #### Icon
 
 
 
+## Navigation & Routing
 
-### 圆角，阴影等
+对于不同场景，我们需要不同的页面来展示，当点击一个按钮时，我们可能会跳转到另一个页面去展示不同的内容。 在iOS中，我们使用ViewController, 在安卓中使用Activity, 而在Flutter中，是一个Widget。
+
+在Flutter中有两种路由方式
+
+1. ### Navigator
+
+使用方式: 
+* 新建两个widget FirstRoute 和 SecondRoute
+* 从FirstRoute跳转到SecondRoute
+
+```
+onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const SecondRoute()),
+  );
+}
+```
+
+* 从SecondRoute返回到 FirstRoute
+
+```
+onPressed: () {
+  Navigator.pop(context);
+}
+```
+
+
+
+
+
+3. ### Router
+
+
+
+
+
 
 
 
